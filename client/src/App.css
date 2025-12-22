@@ -176,15 +176,16 @@ body, html {
   max-width: 560px;
   margin-left: auto;
   margin-right: auto;
-  height: 510px;
+  height: auto; /* allow content-driven height */
 }
 
 /* About page: center card inside viewport */
 .hero-layout.about-page {
-  /* center content vertically and horizontally */
-  min-height: calc(100vh - 120px); /* allow for navbar + padding */
-  align-items: center; /* vertical */
-  justify-items: center; /* horizontal */
+  /* switch to single column and center everything */
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center; /* centers horizontally and vertically */
+  min-height: calc(100vh - 120px); /* viewport height minus navbar/padding */
   gap: 0; /* single centered column */
 }
 
@@ -201,6 +202,7 @@ body, html {
     padding: 24px 0;
     align-items: start; /* allow natural flow on small screens */
     justify-items: center;
+    place-items: start center; /* vertical start, horizontal center */
   }
 }
 
