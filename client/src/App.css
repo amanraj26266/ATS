@@ -146,10 +146,11 @@ body, html {
 
 .hero-image img {
   width: 100%;
-  max-width: 100%;
+  max-width: 520px; /* limit large images to avoid overlap */
   height: auto;
   border-radius: 12px;
   display: block;
+  object-fit: cover;
 } 
 
 
@@ -168,6 +169,14 @@ body, html {
   width: 100%;
   box-sizing: border-box;
 } 
+
+/* Prevent overlap on wide images: center the home/about cards and limit width */
+.home-card,
+.about-card {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Home & About specific cards */
 .home-card {
