@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import "./App.css";
 
-const API_URL = "https://ats-backend-96r6.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL || "https://ats-backend-96r6.onrender.com";
 
 const LABELS = {
   keywordScore: "Keyword Match",
@@ -17,6 +17,7 @@ function App() {
   const [role, setRole] = useState("fullstack");
   const [atsResult, setAtsResult] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [page, setPage] = useState("home");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,56 +72,114 @@ function App() {
           </button>
 
           <ul id="nav-links" className={`nav-links ${mobileOpen ? "open" : ""}`}>
-            <li onClick={() => setMobileOpen(false)}>Home</li>
-            <li onClick={() => setMobileOpen(false)}>Analyze</li>
-            <li onClick={() => setMobileOpen(false)}>About</li>
+            <li
+              onClick={() => {
+                setPage("home");
+                setMobileOpen(false);
+              }}
+            >
+              Home
+            </li>
+            <li
+              onClick={() => {
+                setPage("analyze");
+                setMobileOpen(false);
+              }}
+            >
+              Analyze
+            </li>
+            <li
+              onClick={() => {
+                setPage("about");
+                setMobileOpen(false);
+              }}
+            >
+              About
+            </li>
           </ul>
         </div>
       </nav> 
 
       <main className="content-container">
-        <section className="hero-layout">
-          <div className="hero-image">
-            <img
-              src="https://statics.mylandingpages.co/static/aaafbjvju776ljex/image/443c3de1a43c4f6bb33b8f81fc46a85c.png"
-              alt="ATS Illustration"
-            />
-          </div>
-
-          <form className="form-card" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Upload Resume (PDF/DOCX)</label>
-              <input
-                type="file"
-                accept=".pdf,.doc,.docx"
-                onChange={(e) => setFile(e.target.files[0])}
-                required
+        {page === "home" && (
+          <section className="hero-layout">
+            <div className="hero-image">
+              <img
+                src="https://statics.mylandingpages.co/static/aaafbjvju776ljex/image/443c3de1a43c4f6bb33b8f81fc46a85c.png"
+                alt="ATS Illustration"
               />
             </div>
 
-            <div className="form-group">
-              <label>Target Role</label>
-              <select value={role} onChange={(e) => setRole(e.target.value)}>
-                <option value="frontend">Frontend Developer</option>
-                <option value="backend">Backend Developer</option>
-                <option value="fullstack">Full Stack Developer</option>
-              </select>
+            <div className="form-card">
+              <h2>Welcome to ATS Resume Analyzer</h2>
+              <p>
+                Paste a job description and upload your resume to get an ATS
+                match score and suggestions to improve your chances.
+              </p>
+              <button onClick={() => setPage("analyze")}>Get Started</button>
             </div>
+          </section>
+        )}
 
-            <div className="form-group">
-              <label>Job Description</label>
-              <textarea
-                rows="6"
-                value={jobDescription}
-                onChange={(e) => setJobDescription(e.target.value)}
-                placeholder="Paste job description here..."
-                required
+        {page === "analyze" && (
+          <section className="hero-layout">
+            <div className="hero-image">
+              <img
+                src="https://statics.mylandingpages.co/static/aaafbjvju776ljex/image/443c3de1a43c4f6bb33b8f81fc46a85c.png"
+                alt="ATS Illustration"
               />
             </div>
 
-            <button type="submit">Analyze Resume</button>
-          </form>
-        </section>
+            <form className="form-card" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Upload Resume (PDF/DOCX)</label>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Target Role</label>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                  <option value="frontend">Frontend Developer</option>
+                  <option value="backend">Backend Developer</option>
+                  <option value="fullstack">Full Stack Developer</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Job Description</label>
+                <textarea
+                  rows="6"
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
+                  placeholder="Paste job description here..."
+                  required
+                />
+              </div>
+
+              <button type="submit">Analyze Resume</button>
+            </form>
+          </section>
+        )}
+
+        {page === "about" && (
+          <section className="hero-layout">
+            <div className="form-card">
+              <h2>About ATS Resume Analyzer</h2>
+              <p>
+                This tool analyzes resumes against a job description to estimate
+                an ATS match score and highlight missing skills and formatting
+                issues. It's intended to help job seekers improve their
+                resumes.
+              </p>
+              <p>Built with React, Vite and a small Express backend.</p>
+            </div>
+          </section>
+        )}
 
         {atsResult && (
           <>
