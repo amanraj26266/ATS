@@ -169,6 +169,15 @@ body, html {
   box-sizing: border-box;
 } 
 
+/* Home & About specific cards */
+.home-card {
+  line-height: 1.5;
+}
+
+.about-card {
+  line-height: 1.5;
+}
+
 .form-group {
   margin-bottom: 16px;
 }
