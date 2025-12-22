@@ -20,14 +20,7 @@ export default function Home() {
           to manage hiring at scale.
         </p>
 
-        <h3>Why it matters</h3>
-        <p>
-          An ATS scans resumes for keywords, skills, and structure. If your
-          resume doesn't include the right keywords or is poorly formatted,
-          it may never reach a human recruiter. This tool helps you match your
-          resume to a job description and highlights missing skills and
-          formatting issues.
-        </p>
+
 
         <h3>How to use this site</h3>
         <ol>
