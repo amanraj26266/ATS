@@ -178,6 +178,31 @@ body, html {
   margin-right: auto;
 }
 
+/* About page: center card inside viewport */
+.hero-layout.about-page {
+  /* center content vertically and horizontally */
+  min-height: calc(100vh - 120px); /* allow for navbar + padding */
+  align-items: center; /* vertical */
+  justify-items: center; /* horizontal */
+  gap: 0; /* single centered column */
+}
+
+/* Ensure the about card is centered and constrained */
+.hero-layout.about-page .about-card {
+  max-width: 720px;
+  width: 100%;
+  margin: 0; /* centered by grid */
+}
+
+@media (max-width: 850px) {
+  .hero-layout.about-page {
+    min-height: auto;
+    padding: 24px 0;
+    align-items: start; /* allow natural flow on small screens */
+    justify-items: center;
+  }
+}
+
 /* Home & About specific cards */
 .home-card {
   line-height: 1.5;

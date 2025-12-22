@@ -3,7 +3,7 @@ import "./App.css";
 
 export default function About() {
   return (
-    <section className="hero-layout">
+    <section className="hero-layout about-page">
       <div className="form-card about-card">
         <h2>About the Developer</h2>
         <p>
@@ -14,9 +14,9 @@ export default function About() {
 
         <h3>Contact</h3>
         <p>
-          Email: aman@example.com
+          Email: aman.12106020@gmail.com
           <br />
-          Portfolio: https://aman-rajs-projects.vercel.app
+          Portfolio: https://portfolio-aman-9myc.onrender.com/
         </p>
 
         <h3>Source & Feedback</h3>
