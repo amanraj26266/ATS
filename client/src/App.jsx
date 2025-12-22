@@ -31,7 +31,7 @@ function App() {
     formData.append("role", role);
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}/api/analyze`, {
         method: "POST",
         body: formData
       });
