@@ -1,0 +1,373 @@
+/* RESET & BASE */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 100vw; /* ensure the page spans the full viewport width */
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevents the horizontal white space/scroll */
+  overflow-y: auto;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #8fc7e0; /* ensure the background fills the entire window and removes any white gaps */
+  background-attachment: fixed; /* helps avoid visual shifts when scrolling */
+} 
+
+/* APP SHELL */
+.app-shell {
+  min-height: 100vh;
+  width: 100vw; /* use viewport width to avoid any accidental centered gaps */
+  box-sizing: border-box;
+  background-color: #8fc7e0;
+  padding: 12px; /* Reduced for mobile */
+  overflow-x: hidden; /* defensive: prevent child overflow */
+} 
+
+/* NAVBAR - full-width safe */
+.navbar {
+  width: 100%;
+  box-sizing: border-box;
+  /* cancel the .app-shell horizontal padding so the bar sits edge-to-edge */
+  margin: 0 -12px 20px -8px;
+  padding: 0; /* inner spacing handled by .nav-inner */
+  background: #1975d1;
+  border-radius: 0; /* full-width bar */
+  display: block;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* centered inner content so brand & links align with page */
+.nav-inner {
+  max-width: 1200px;
+  width: calc(100% - 48px);
+  margin: 0 auto;
+  padding: 8px 24px; /* inner padding */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}  
+
+.nav-brand {
+  color: #fff;
+  margin: 0;
+  padding-left: 0; /* brand aligns with inner wrapper padding */
+  font-size: 1.2rem;
+  align-self: center;
+  font-weight: 600;
+} 
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 22px; /* equal spacing between link items */
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  min-width: auto; /* allow natural sizing */
+  justify-content: flex-end; /* keep links grouped to the right with even gaps between them */
+  flex-wrap: wrap; /* allow wrapping instead of forcing overflow */
+  white-space: nowrap;
+}   
+
+.nav-links li {
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Note: removed duplicate .nav-brand/.nav-links block to avoid conflicting styles */
+
+.nav-links li:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Mobile toggle button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  /* keep default positioning neutral on desktop */
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  margin: 3px 0;
+  border-radius: 2px;
+}
+
+
+/* When open, .nav-links gets the .open class to show on mobile */
+.nav-links.open {
+  display: flex;
+}
+
+
+/* CONTENT CONTAINER */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: calc(100% - 48px); /* leave room for shell padding */
+  padding: 0 24px; /* consistent inner spacing */
+  box-sizing: border-box;
+} 
+
+/* HERO SECTION - Responsive Grid */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr; /* slightly larger hero area and slightly tighter form column */
+  gap: 32px; /* more breathing room */
+  margin-bottom: 30px;
+  align-items: start;
+  width: 100%;
+} 
+
+.hero-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0; /* subtle vertical padding so image and form align nicely */
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+} 
+
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* FORM CARD */
+.form-card {
+  background: #fff;
+  padding: 28px 28px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  width: 100%;
+  box-sizing: border-box;
+} 
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #1565c0;
+}
+
+/* RESULTS SECTION */
+.result-card {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.score-box {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0; /* Prevents donut from squishing */
+}
+
+.score-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.score-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #333;
+}
+
+.score-label {
+  font-size: 10px;
+  color: #777;
+  letter-spacing: 1px;
+}
+
+.progress-section {
+  flex: 1;
+  width: 100%;
+}
+
+.progress-item {
+  margin-bottom: 16px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+.green { background: #4caf50; }
+.yellow { background: #ffc107; }
+.red { background: #f44336; }
+
+/* SKILLS CARD */
+.skill-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  margin-top: 24px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+
+.skill-chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.skill-match { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.skill-miss { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 850px) {
+  .hero-layout {
+    grid-template-columns: 1fr; /* Stack image and form */
+    gap: 20px;
+  }
+  .content-container {
+    width: calc(100% - 32px);
+    padding: 0 16px;
+  }
+  .form-card {
+    padding: 20px;
+  }
+  
+  .result-card {
+    flex-direction: column; /* Stack chart and bars */
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    border-radius: 0;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .nav-inner {
+    padding: 8px 12px;
+  }
+  .nav-brand {
+    padding-left: 0;
+    align-self: flex-start; /* keep the brand at the far left of the inner padding */
+  }
+  .nav-toggle {
+    display: block; /* show hamburger */
+    margin-left: auto; /* push it to the rightmost edge */
+    margin-right: 12px; /* small breathing room from the viewport */
+    z-index: 20; /* ensure it sits above the dropdown */
+  }
+
+  /* hide the regular horizontal links on mobile and show them as a dropdown when .open */
+  .nav-links {
+    display: none;
+    gap: 12px;
+    padding: 12px;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(25,117,209,0.95);
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    padding: 10px 8px;
+    border-radius: 6px;
+    color: #fff;
+  }
+  .app-shell {
+    padding: 8px;
+  }
+}
