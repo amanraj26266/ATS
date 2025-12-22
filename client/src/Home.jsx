@@ -17,10 +17,12 @@ export default function Home() {
           ATS stands for Applicant Tracking System. It's software used by
           recruiters and employers to collect, sort, and filter job
           applications. Most large companies and many smaller ones use an ATS
-          to manage hiring at scale.
+          to manage hiring at scale. An ATS scans resumes for keywords, skills, and structure. If your
+          resume doesn't include the right keywords or is poorly formatted,
+          it may never reach a human recruiter. This tool helps you match your
+          resume to a job description and highlights missing skills and
+          formatting issues.
         </p>
-
-
 
         <h3>How to use this site</h3>
         <ol>
