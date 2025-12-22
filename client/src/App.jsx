@@ -2,6 +2,8 @@ import { useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import "./App.css";
 
+const API_URL = "https://ats-backend-96r6.onrender.com";
+
 const LABELS = {
   keywordScore: "Keyword Match",
   skillScore: "Hard Skills",
@@ -29,7 +31,7 @@ function App() {
     formData.append("role", role);
 
     try {
-      const response = await fetch("http://localhost:5000/api/analyze", {
+      const response = await fetch(API_URL, {
         method: "POST",
         body: formData
       });
