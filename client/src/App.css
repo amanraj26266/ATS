@@ -249,11 +249,39 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-button:hover {
+/* Hover only when enabled */
+button:hover:not(:disabled) {
   background: #1565c0;
 }
+
+/* Disabled state while loading */
+button:disabled {
+  background: #90caf9;
+  cursor: not-allowed;
+}
+
+/* Loader spinner */
+.loader {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* RESULTS SECTION */
 .result-card {
