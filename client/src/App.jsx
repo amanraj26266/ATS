@@ -45,6 +45,8 @@ function App() {
     } catch (err) {
       console.error(err);
       alert("Backend error. Check server console.");
+    } finally {
+      setLoading(false);
     }
   };
 
