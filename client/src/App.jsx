@@ -17,6 +17,8 @@ function App() {
   const [jobDescription, setJobDescription] = useState("");
   const [role, setRole] = useState("fullstack");
   const [atsResult, setAtsResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +33,8 @@ function App() {
     formData.append("role", role);
 
     try {
+      setLoading(true);
+      setAtsResult(null);
       const response = await fetch(`${API_URL}/api/analyze`, {
         method: "POST",
         body: formData
@@ -47,6 +51,7 @@ function App() {
   const atsScore = atsResult?.atsScore || 0;
   const breakdown = atsResult?.breakdown || {};
   const skills = atsResult?.skills;
+  const 
 
   const donutData = [
     { name: "Score", value: atsScore },
@@ -94,7 +99,15 @@ function App() {
             />
           </div>
 
-          <button type="submit">Analyze Resume</button>
+          <button type="submit" disabled={loading} className="analyze-btn">
+              {loading ? (
+               <span className="loader"></span>
+                ) : (
+               "Analyze Resume"
+              )}
+          </button>
+
+
         </form>
       </section>
 
