@@ -51,7 +51,6 @@ function App() {
   const atsScore = atsResult?.atsScore || 0;
   const breakdown = atsResult?.breakdown || {};
   const skills = atsResult?.skills;
-  const 
 
   const donutData = [
     { name: "Score", value: atsScore },
